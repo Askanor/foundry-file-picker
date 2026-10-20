@@ -1,0 +1,199 @@
+/* Hover preview, shown in Foundry's tooltip for any file picker. */
+#tooltip.ffp-preview {
+  max-width: none;
+  padding: 4px;
+
+  figure {
+    margin: 0;
+  }
+
+  /* A fixed box, so the tooltip is placed correctly before the media loads. */
+  img,
+  video {
+    display: block;
+    width: 320px;
+    height: 320px;
+    object-fit: contain;
+    border: none;
+  }
+
+  figcaption {
+    max-width: 320px;
+    margin-top: 4px;
+    text-align: center;
+    word-break: break-all;
+  }
+}
+
+/* Sidebar tab and its popout. */
+.ffp-file-browser .ffp-browser {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+/*
+ * The picker inside the tab. Core styles its picker through #file-picker,
+ * an id this second picker cannot share, so these rules follow core's and fit
+ * them to the narrow sidebar.
+ */
+.ffp-embedded {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 0;
+  padding: 0.5rem;
+
+  .subheader .current-dir button {
+    flex: 0 0 var(--button-size);
+  }
+
+  .subheader .set-favorite {
+    flex: none;
+  }
+
+  .subheader .tag {
+    flex: none;
+    padding-left: 4px;
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+  }
+
+  .subheader .split-button {
+    justify-content: end;
+  }
+
+  .body {
+    flex: 1;
+    gap: 0.5rem;
+    min-height: 0;
+    overflow-y: auto;
+    font-size: var(--font-size-13);
+  }
+
+  ul.directory {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+
+    > li {
+      margin: 0;
+      padding: 0.5rem;
+      overflow: hidden;
+      word-break: break-all;
+      cursor: var(--cursor-pointer);
+      border-bottom: 1px solid var(--color-dark-6);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        text-shadow: 0 0 10px var(--color-shadow-primary);
+      }
+
+      &.picked {
+        color: var(--color-text-selection);
+        font-weight: 600;
+        background: var(--color-text-selection-bg);
+      }
+
+      > i {
+        margin-right: 0.25rem;
+      }
+    }
+  }
+
+  ul.details img {
+    display: none;
+  }
+
+  ul.thumbs {
+    i,
+    img {
+      flex: 0 0 48px;
+      margin-right: 0.5rem;
+    }
+
+    i {
+      font-size: 48px;
+    }
+
+    img {
+      object-fit: cover;
+      border: none;
+    }
+  }
+
+  ul.tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+
+    li {
+      height: 80px;
+      padding: 0;
+      border: 1px solid transparent;
+
+      &.picked {
+        background: var(--color-cool-5);
+        outline: 1px solid var(--color-warm-1);
+        box-shadow: 0 0 4px var(--color-warm-1) inset;
+      }
+
+      i {
+        display: block;
+        width: fit-content;
+        margin: 12px auto;
+        font-size: 48px;
+      }
+
+      img {
+        width: 100%;
+        height: 80px;
+        object-fit: contain;
+      }
+    }
+  }
+
+  ul.images li {
+    position: relative;
+    height: 160px;
+    padding: 0;
+
+    i {
+      display: block;
+      width: fit-content;
+      margin: 32px auto;
+      font-size: 96px;
+    }
+
+    img {
+      width: 100%;
+      height: 160px;
+      object-fit: contain;
+      border: none;
+    }
+
+    span.filename {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      padding: 0.25rem;
+      color: var(--color-light-2);
+      text-align: center;
+      background: var(--color-cool-5-75);
+    }
+  }
+
+  &.private .directory,
+  li.private.dir {
+    background: rgba(115, 49, 255, 0.05);
+  }
+}

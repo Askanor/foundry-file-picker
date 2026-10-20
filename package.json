@@ -1,0 +1,14 @@
+{
+  "name": "foundry-file-picker",
+  "version": "0.1.0",
+  "description": "Foundry VTT module: file picker previews, multi-file upload and a sidebar file browser.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@askanor/foundry-devkit": "file:../../devkit",
+    "@playwright/test": "^1.64.1"
+  }
+}

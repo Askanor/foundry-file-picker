@@ -1,0 +1,7 @@
+{
+  "FFP": {
+    "FileBrowser": "File Browser",
+    "Uploading": "Uploading {current} of {total}: {name}",
+    "Uploaded": "Uploaded {count} of {total} files to {target}"
+  }
+}
