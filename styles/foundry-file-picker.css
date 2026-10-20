@@ -46,6 +46,11 @@
   min-height: 0;
   padding: 0.5rem;
 
+  /* Core pulls these tabs up to a dialog's top edge; keep them inside the padding. */
+  nav.tabs.top-tabs {
+    margin: 0 -0.5rem;
+  }
+
   .subheader .current-dir button {
     flex: 0 0 var(--button-size);
   }
