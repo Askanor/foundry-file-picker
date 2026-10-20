@@ -30,6 +30,7 @@ The module relies on these parts of Foundry. Compare them with the new version's
 | Sidebar tab | `CONFIG.ui`, `Sidebar.TABS`, `AbstractSidebarTab` | `client/applications/sidebar/` |
 | Sidebar tab | `ApplicationV2#_insertElement` swaps an element with the same id for the picker | `client/applications/api/application.mjs` |
 | Sidebar tab layout | The `#file-picker` rules, mirrored in `styles/foundry-file-picker.css` | `public/css/foundry2.css` |
+| Batch Media Optimizer | Uploads call `this.constructor.upload`, which Batch Media Optimizer replaces on `FilePicker.implementation` in its `ready` hook | `scripts/upload-hook.mjs` of Batch Media Optimizer |
 
 ## Common issues
 

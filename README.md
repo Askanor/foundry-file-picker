@@ -10,6 +10,8 @@ The module extends Foundry's own file picker, so the image dialogs of sheets, to
 - Select several files in the **Upload** field to upload all of them. One progress bar replaces the per-file notifications. Dropping files onto the picker already uploads all of them in core Foundry.
 - Open the **File Browser** tab in the sidebar, the folder icon above **Settings**, to browse and upload without a dialog. Right-click the icon to open the tab in a window. Users without the **Use File Browser** permission do not see the tab.
 
+Uploads from every picker go through Foundry's upload function, so [Batch Media Optimizer](https://foundryvtt.com/packages/batch-media-optimizer) converts them to WebP when its upload setting is on.
+
 ## Install
 
 In Foundry's **Install Module** dialog, paste this manifest URL:
@@ -27,6 +29,12 @@ The tests run against the Foundry devkit, a private sibling repository at `../..
 npm install
 npx playwright install chromium    # once per Playwright version
 npm test                           # run the Playwright tests
+```
+
+The tests in `tests/batch-media-optimizer.spec.js` skip until Batch Media Optimizer is installed in the devkit:
+
+```bash
+../../devkit/bin/foundry install https://github.com/aronjanosch/foundryvtt-batch-media-optimizer/releases/latest/download/module.json
 ```
 
 The code is plain JavaScript without a build step. Reload the browser after a change to `scripts/`. Foundry reloads changes to `styles/`, `templates/`, and `lang/` by itself.
