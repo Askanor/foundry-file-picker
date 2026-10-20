@@ -13,18 +13,19 @@ for (const [file, tag] of [["landscape.png", "img"], ["clip.webm", "video"]]) {
 }
 
 test.describe("upload", () => {
-  let uploadDir;
+  const uploadDirOf = testInfo => `devkit-uploads/${testInfo.testId}`;
 
   test.beforeEach(async ({ gm }, testInfo) => {
-    uploadDir = `devkit-uploads/${testInfo.testId}`;
-    await gm.evaluate(dir => foundry.applications.apps.FilePicker.implementation.createDirectory("data", dir), uploadDir);
+    const dir = uploadDirOf(testInfo);
+    await gm.evaluate(dir => foundry.applications.apps.FilePicker.implementation.createDirectory("data", dir), dir);
   });
 
-  test.afterEach(async () => {
-    await fs.rm(path.join(dataPath, uploadDir), { recursive: true, force: true });
+  test.afterEach(async ({}, testInfo) => {
+    await fs.rm(path.join(dataPath, uploadDirOf(testInfo)), { recursive: true, force: true });
   });
 
-  test("uploads every file chosen in the upload field", async ({ gm }) => {
+  test("uploads every file chosen in the upload field", async ({ gm }, testInfo) => {
+    const uploadDir = uploadDirOf(testInfo);
     const picker = await openFilePicker(gm, uploadDir, "image");
     const files = ["token.png", "portrait.jpg", "tile.webp"];
     await picker.locator('input[name="upload"]').setInputFiles(files.map(f => path.join(fixturesPath, "assets", f)));
